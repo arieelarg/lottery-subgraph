@@ -1,0 +1,36 @@
+specVersion: 0.0.4
+description: Loteria de Babilonia
+repository: https://github.com/arieelarg/contrato-loteria-de-babilonia
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Lottery
+    network: goerli
+    source:
+      address: "0xdc12b61cee7e9baedf552e8db42744b9f63a555a"
+      abi: Lottery
+      startBlock: 7869096
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - LotteryStore
+      abis:
+        - name: Lottery
+          file: ./abis/Lottery.json
+      eventHandlers:
+        - event: BuyTicket(uint256,address)
+          handler: handleBuyTicket
+        - event: LotteryCalculating(uint8)
+          handler: handleLotteryCalculating
+        - event: RestartLottery(uint8,address[])
+          handler: handleRestartLottery
+        - event: StartLottery(uint256,uint8,uint256)
+          handler: handleStartLottery
+        - event: UpdatePlayersRequired(uint256)
+          handler: handleUpdatePlayersRequired
+        - event: WinnerPicked(indexed address)
+          handler: handleWinnerPicked
+      file: ./src/lottery.ts

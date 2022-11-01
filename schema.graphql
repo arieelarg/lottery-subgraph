@@ -1,0 +1,10 @@
+type LotteryStore @entity {
+  id: ID!
+  event: String!
+  status: Int!
+  price: BigInt!
+  prize: BigInt
+  winner: Bytes
+  playersRequired: BigInt!
+  players: [String!]
+}
