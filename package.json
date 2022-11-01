@@ -1,11 +1,11 @@
 {
-  "name": "lotteryapi",
+  "name": "lottery",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
     "predeploy": "yarn run codegen && yarn run build",
-    "deploy": "yarn run predeploy && graph deploy --studio lotteryapi",
+    "deploy": "yarn run predeploy && graph deploy --studio lottery",
     "test": "graph test"
   },
   "dependencies": {

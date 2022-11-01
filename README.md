@@ -4,6 +4,8 @@ Index service.
 
 ## How to create subgraph?
 
+0. graph auth --studio <deploy-key>
+
 1. Init graph project folder
 ```bash
 graph init --contract-name Lottery \
