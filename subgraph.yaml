@@ -8,9 +8,9 @@ dataSources:
     name: Lottery
     network: goerli
     source:
-      address: "0xdc12b61cee7e9baedf552e8db42744b9f63a555a"
+      address: "0x4658d96C84DA37e9a62fBEe52aeC75432c664067"
       abi: Lottery
-      startBlock: 7869096
+      startBlock: 8136788
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -31,6 +31,8 @@ dataSources:
           handler: handleStartLottery
         - event: UpdatePlayersRequired(uint256)
           handler: handleUpdatePlayersRequired
+        - event: TicketPriceUpdated(uint256)
+          handler: handleTicketPriceUpdated
         - event: WinnerPicked(indexed address)
           handler: handleWinnerPicked
       file: ./src/lottery.ts

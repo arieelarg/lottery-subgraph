@@ -7,6 +7,7 @@ import {
   RestartLottery as RestartLotteryEvent,
   StartLottery as StartLotteryEvent,
   UpdatePlayersRequired as UpdatePlayersRequiredEvent,
+  TicketPriceUpdated as TicketPriceUpdatedEvent,
   WinnerPicked as WinnerPickedEvent,
 } from '../generated/Lottery/Lottery'
 
@@ -143,6 +144,27 @@ export function handleUpdatePlayersRequired(
   lotteryStore.players = byteArrayToStringArray(lottery.getPlayers())
 
   lotteryStore.playersRequired = event.params.playersRequired
+
+  lotteryStore.save()
+}
+
+export function handleTicketPriceUpdated(
+  event: TicketPriceUpdatedEvent,
+): void {
+  let id = (
+    event.block.number.toString() + event.logIndex.toString()
+  ).toString()
+
+  let lottery = LotteryContract.bind(event.address)
+
+  let lotteryStore = new LotteryStore(id)
+
+  lotteryStore.event = 'TicketPriceUpdated'
+  lotteryStore.status = lottery.getLotteryStatus()
+  lotteryStore.winner = lottery.getWinner()
+  lotteryStore.players = byteArrayToStringArray(lottery.getPlayers())
+
+  lotteryStore.price = event.params.ticketPrice
 
   lotteryStore.save()
 }

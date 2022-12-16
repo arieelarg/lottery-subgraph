@@ -1,10 +1,14 @@
 ## The Graph
 
-Index service.
+Indexing service.
 
 ## How to create subgraph?
 
-0. graph auth --studio <deploy-key>
+0. Authenticate
+
+```bash
+graph auth --studio <deploy-key>
+```
 
 1. Init graph project folder
 ```bash
@@ -54,8 +58,6 @@ from:
 ...
 ```
 
-Optional:
-
 Adding startBlock:
 
 ```
@@ -68,5 +70,17 @@ Adding startBlock:
 5. Generate code
 
 ```bash
-graph codegen
+yarn codegen
 ```
+
+## How to deploy the subgraph?
+
+1. Upload code
+
+```bash
+yarn deploy
+```
+
+2. Set version following semantic versioning
+
+3. If all works fine go to Subgraph Studio and publish
